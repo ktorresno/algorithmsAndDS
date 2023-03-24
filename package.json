@@ -1,0 +1,26 @@
+{
+  "name": "algorithms_and_datastructures",
+  "version": "1.0.0",
+  "description": "Several challenges solved by using the javascript language and NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "algorithms",
+    "data",
+    "structures",
+    "node",
+    "javascrip",
+    "challenge"
+  ],
+  "author": "Karen Torres",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
