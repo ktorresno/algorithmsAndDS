@@ -1,6 +1,6 @@
 const findJudge = require('../townJudge');
 
-test('When in the town there are 4 people and a town judge', () => {
+test('When in the town there are 4 people and one of them is the town judge', () => {
     const trust = [[1,2],[1,3],[2,1],[2,3],[1,4],[4,3],[4,1]] ;
     const N = 4;
     expect(findJudge(N, trust)).toEqual(3);

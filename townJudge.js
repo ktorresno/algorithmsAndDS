@@ -40,6 +40,25 @@
  * @param {Number} n
  * @param {Number[][]} trust
  * @return {Number}
+ * 
+ * Intuition
+ * In this case we are going to track the quantity of times a person labelled 
+ * a or b is found in each a or b position throughout the trust series.
+ * 
+ * Approach
+ * In a first for loop, we'll have a new one dimention  array 'count' where
+ * each element in the array holds a counter by person in the town. 
+ * Basically, we're going to track if a person appears labelled as 'a', then 
+ * we're going to decrement by 1 its count, else we're going to increment by 1 
+ * the count if it's in the labelled 'b' position. 
+ * In another for loop we are going to look for the person which has n-1 
+ * followers(count), which would represent a town judge, otherwise there isn't 
+ * a town judge.
+ * 
+ * Complexity
+ * Time complexity: O(n)
+ * Space complexity: O(1)
+ * 
  */
 function findJudge(n, trust){
     let count = new Array(n+1).fill(0);
@@ -48,7 +67,7 @@ function findJudge(n, trust){
         count[a]--;
         count[b]++;
     }
-    console.log(count);
+    //console.log(count);
     for (let i = 1; i < n+1; i++) {
         if(count[i] == n-1) return i;                
     }
@@ -58,27 +77,43 @@ function findJudge(n, trust){
 module.exports = findJudge;
 
 /**
+ * Another approach
+   
+  Intuition
+    Since the judge is the only one who doesn't trust anybody, then the judge
+    can't be in the position of 'a' labels and all 'a' labels should be paired
+    to a label 'b' candidate.
+
+  Approach
+    Record in the iTrust hash map of trustee labels attached to a trusted 
+    candidate. In the same way, record in the otherTrust hash map to whom other
+    trust.
+
+  Complexity
+    Time complexity: O(n)
+  Space complexity: O(n) created new structures proportionaly same size 
+    of the trust input array.
  
 var findJudge = function(n, trust) {
-    const trustedBy = []
-    let judge = -1;
     const tlength = trust.length;
-    if (n < 1) return -1;
     if(tlength === 0 && n==1) return 1;
-    if(tlength === 0) return -1;
-
-    const trustedIn = trust[0][1];
-    if (n===2 && tlength ===1) return trust[0][1];
+    let iTrust = {};
+    let otherTrust = {};
+    let judge = -1;
 
     for (let i =0; i<tlength; i++) {
-        if(trustedIn == trust[i][1]) {
-            trustedBy.push(trust[i][0]);
+        let trustee = trust[i][0];
+        let trusted = trust[i][1];
+        iTrust[trustee] = iTrust[trustee] ? iTrust[trustee].concat(trusted) : [trusted]; 
+        otherTrust[trusted] = otherTrust[trusted] ? otherTrust[trusted].concat(trustee) : [trustee];
+    }
+    let keyArray = Object.keys(otherTrust);
+    for (let i = 0; i<keyArray.length; i++) {
+        let current = keyArray[i];
+        if (otherTrust[current] && otherTrust[current].length == n-1 && !iTrust[current]) {
+            judge = current*1;
         }
-        if (trustedBy.length === n-1 && trustedBy.indexOf(trustedIn) == -1)
-            judge = trustedIn;
-        if (trust[i][0] === trustedIn)
-            judge = -1;
     }
     return judge;
 };
- */
+*/
