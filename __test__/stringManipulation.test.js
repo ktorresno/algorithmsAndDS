@@ -68,4 +68,20 @@ test("Count correctly how many times each character into the phrase occurs", () 
     expect(countChars(inputStr2)).toEqual(expectedResult);
 });
 
+/*
+    Find odd words between two phrases.
+    A word is considered odd when appears only once 
+*/
+const oddWords = require('../oddWords');
 
+test("", () => {
+    const a =  "Mirror  mirror   ";
+    const b = "community is the greatest ";
+    const expectedRes = ["community", "is", "the", "greatest"];
+    expect(oddWords(a,b)).toEqual(expectedRes);
+
+    const c =  "This community is the best  ";
+    const d = "this community is the greatest ";
+    const expectedRes2 = ["best","greatest"];
+    expect(oddWords(c,d)).toEqual(expectedRes2);
+});
