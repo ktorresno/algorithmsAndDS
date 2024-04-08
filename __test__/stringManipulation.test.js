@@ -1,5 +1,6 @@
 test("The message decoded is a phrase!", () => {
     const { reverseString, reverseStringsInArray } = require('../decodeMessage');
+
     const tittle = ":htraE no od ot ffutS";
     const expectedTitle = "Stuff to do on Earth:";
     expect(reverseString(tittle)).toEqual(expectedTitle);
@@ -100,4 +101,20 @@ test("The string is a palindrome", () => {
 
     const str5 = "madam";
     expect(isPalindrome(str5)).toBe(true);
+});
+
+test("Convert to all caps a word or a sentence like you are yelling at someone", () => {
+    const panic = require('../panicFunction');
+
+    const str1 = "Winter is coming";
+    const expectedStr = "WINTER 😱 IS 😱 COMING!";
+    expect(panic(str1)).toEqual(expectedStr);
+
+    const str2 = "summer";
+    const expectedStr2 = "SUMMER!"
+    expect(panic(str2)).toEqual(expectedStr2);
+
+    const str3 = "I'm almost out of coffee";
+    const expectedStr3 = "I'M 😱 ALMOST 😱 OUT 😱 OF 😱 COFFEE!";
+    expect(panic(str3)).toEqual(expectedStr3);
 });
