@@ -118,3 +118,35 @@ test("Convert to all caps a word or a sentence like you are yelling at someone",
     const expectedStr3 = "I'M 😱 ALMOST 😱 OUT 😱 OF 😱 COFFEE!";
     expect(panic(str3)).toEqual(expectedStr3);
 });
+
+test("Remove duplicated from a string and from an array", () => {
+    const { removeDupeChars,removeDupesFromArray } = require('../removeDuplicate');
+
+    const passStr = "9338dsabbbadjdjdj2sdfdfdf282ff8fdsd888ss8cfgfg332q23";
+    const expPass = "938dsabj2fcgq";
+    expect(removeDupeChars(passStr)).toEqual(expPass);
+
+    const eggScrambleRecipe = [
+        "🥓 bacon",
+        "🥓 bacon", 
+        "🍳 eggs",
+        "🫑 green peppers",
+        "🧀 cheese",
+        "🌶️ hot sauce",
+        "🥓 bacon",
+        "🥦 broccoli", 
+        "🧀 cheese",
+        "🥦 broccoli", 
+        "🌶️ hot sauce"
+    ]
+    const expectedResult = [
+        "🥓 bacon", 
+        "🍳 eggs",
+        "🫑 green peppers",
+        "🧀 cheese",
+        "🌶️ hot sauce",
+        "🥦 broccoli",
+    ];
+    expect(removeDupesFromArray(eggScrambleRecipe)).toEqual(expectedResult);
+
+});
